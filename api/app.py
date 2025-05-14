@@ -26,5 +26,8 @@ def get_leaderboard():
     values = result.get('values', [])
     return jsonify(values)
 
+def handler(event, context):
+    return app(event, context)
+
 if __name__ == '__main__':
     app.run(debug=True)
