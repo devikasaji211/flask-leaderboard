@@ -42,5 +42,16 @@ def get_leaderboard():
 def handler(event, context):
     return app(event, context)
 
+
+@app.route('/test-env')
+def test_env():
+    json_str = os.environ.get('GOOGLE_SERVICE_ACCOUNT')
+    if json_str:
+        return jsonify({"status": "found env var", "length": len(json_str)})
+    else:
+        return jsonify({"error": "env var not found"}), 500
+
+
+
 if __name__ == '__main__':
     app.run(debug=True)
